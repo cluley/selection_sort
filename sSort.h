@@ -26,13 +26,14 @@ namespace own {
 	}
 }
 
-void sSort(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+template<class It>
+void sSort(It begin, It end)
 {
 	if (begin == end) return;
 
 	for (auto i = begin; i != end; ++i) {
-		std::promise<std::vector<int>::iterator> prom;
-		std::future<std::vector<int>::iterator> ft_min = prom.get_future();
+		std::promise<It> prom;
+		std::future<It> ft_min = prom.get_future();
 		auto ft = std::async(own::min_element, i, end, std::move(prom));
 
 		ft.wait();
