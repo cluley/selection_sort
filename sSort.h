@@ -8,7 +8,8 @@
 #include <future>
 
 namespace own {
-	void min_element(std::vector<int>::iterator begin, std::vector<int>::iterator end, std::promise<std::vector<int>::iterator> prom)
+	template <class It>
+	void min_element(It begin, It end, std::promise<It> prom)
 	{
 		if (begin == end) {
 			prom.set_value(end);
